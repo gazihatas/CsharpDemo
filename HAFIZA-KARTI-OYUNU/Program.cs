@@ -15,6 +15,7 @@ namespace HAFIZA_KARTI_OYUNU
             Random rnd = new Random();
             int rastgeleSayi;
            
+            //Değişken tanımlamaları
             bool oyun = true;
             int giris1, giris2;
             int run1i, run1j;
