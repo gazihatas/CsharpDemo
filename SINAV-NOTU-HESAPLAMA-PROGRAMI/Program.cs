@@ -32,9 +32,10 @@ namespace SINAV_NOTU_HESAPLAMA_PROGRAMI
             ! Kullanıcının girdiği yüzdeler toplamı tam olarak 100’e eşit olmalıdır. Eksik veya fazla olamaz.
             ! Kullanıcı not hesaplama adımlarında string veya char değerinde bir giriş yapamaz.
             */
-            string not="0";
-            string yuzde="0";
-            
+            //değişken tanımlamaları
+            double not, yuzde, ortalama;
+
+
             MENU:
             Console.WriteLine("****SINAV NOTU HESAPLAYAN PROGRAM****");
             Console.WriteLine("Çıkış için 'E' tuşuna basın");
@@ -61,29 +62,36 @@ namespace SINAV_NOTU_HESAPLAMA_PROGRAMI
                     goto NOTADETI;
                 }
                 
-                for (int i = 0; i < Convert.ToInt32(notAdeti); i++)
+                for (int i = 1; i < Convert.ToInt32(notAdeti); i++)
                 {
                     NOT:
-                    Console.WriteLine("Notunuzu giriniz");
-                    not = Console.ReadLine();
-                    int number2;
-                    bool result2 = int.TryParse(not, out number2);
-                    if (result2 == false)
+                    Console.WriteLine("Lütfen {0}. Notunuzu giriniz",i);
+                    if (!double.TryParse(Console.ReadLine(), out not))
                     {
+                        Console.WriteLine("lütfen sayı değerinde {0} notunuzu giriniz!",i);
                         goto NOT;
                     }
+                    if (not < 0 || not>100)
+                    {
+                        Console.WriteLine("0 dan kücük ve 100 den büyük olamaz");
+                        goto NOT;
+                    }
+
                     YUZDE:
                     Console.WriteLine("Notunuzun yüzdesini giriniz");
-                    yuzde = Console.ReadLine();
-                    int number3;
-                    bool result3 = int.TryParse(yuzde, out number3);
-                    if (result3 == false)
+                    if (!double.TryParse(Console.ReadLine(), out yuzde))
                     {
-                        goto NOT;
+                        Console.WriteLine("lütfen sayı değerinde {0} yuzde değerini giriniz!", i);
+                        goto YUZDE;
+                    }
+                    if (not < 0 || not > 100)
+                    {
+                        Console.WriteLine("0 dan kücük ve 100 den büyük olamaz");
+                        goto YUZDE;
                     }
                 }
 
-                int sonuc = (Convert.ToInt32(not) + Convert.ToInt32(notAdeti));
+                
 
             }
             else
