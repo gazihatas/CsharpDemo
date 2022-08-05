@@ -35,10 +35,10 @@ namespace ToUpperToLowerMetotlari
             *ToLower() => string ifadeyi küçük harfe çevirir.
             */
 
-            string ilAdi;
+            string ilAdin;
             Console.Write("İl adını giriniz?");
-            ilAdi = Console.ReadLine();
-            switch (ilAdi.ToLower())
+            ilAdin = Console.ReadLine();
+            switch (ilAdin.ToLower())
             {
                 case "ankara":
                     Console.Write("Plaka Kodu:06");
