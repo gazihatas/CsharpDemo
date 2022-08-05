@@ -177,7 +177,7 @@ namespace BASIT_HESAP_MAKINESI
                         goto sayi10;
                     }
                     AritmetikIslemler modAlmaIslemi = new AritmetikIslemler();
-                    double sonuc = modAlmaIslemi.mod(Convert.ToInt32(sayi9), Convert.ToInt32(sayi10);
+                    double sonuc = modAlmaIslemi.mod(Convert.ToInt32(sayi9), Convert.ToInt32(sayi10));
                     Console.WriteLine("Mod Alma işlemi Sonucu:{0}", sonuc);
                     break;
                 default:
