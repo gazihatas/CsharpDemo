@@ -75,7 +75,7 @@ namespace ALAN_HESAPLAMA
                                         sekil = new Ucgen(tmp, tmp, tmp);
                                         if (hesaplama.Equals("alan"))
                                         {
-                                            Console.WriteLine("Eşkenar ücgenin alanı : " + sekil.alanHesö lş lşçççççapla());
+                                            Console.WriteLine("Eşkenar ücgenin alanı : " + sekil.alanHesapla());
                                         }
                                         else
                                             Console.WriteLine("Eşkenar ücgenin cevresi : " + sekil.cevreHesapla());
