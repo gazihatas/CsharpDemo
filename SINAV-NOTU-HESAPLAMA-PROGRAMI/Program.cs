@@ -33,7 +33,7 @@ namespace SINAV_NOTU_HESAPLAMA_PROGRAMI
             ! Kullanıcı not hesaplama adımlarında string veya char değerinde bir giriş yapamaz.
             */
             //değişken tanımlamaları
-            double not, yuzde, ortalama;
+            double not, yuzde, ortalama, kalanYuzde;
 
 
             MENU:
@@ -61,37 +61,87 @@ namespace SINAV_NOTU_HESAPLAMA_PROGRAMI
                 {
                     goto NOTADETI;
                 }
-                
-                for (int i = 1; i < Convert.ToInt32(notAdeti); i++)
+                int i = 1;
+                int sayac = 1;
+                do
                 {
                     NOT:
-                    Console.WriteLine("Lütfen {0}. Notunuzu giriniz",i);
+                    Console.WriteLine("Lütfen {0}. Notunuzu giriniz", i);
                     if (!double.TryParse(Console.ReadLine(), out not))
                     {
-                        Console.WriteLine("lütfen sayı değerinde {0} notunuzu giriniz!",i);
+                        Console.WriteLine("lütfen sayı değerinde {0}. notunuzu giriniz!", i);
                         goto NOT;
                     }
-                    if (not < 0 || not>100)
+                    if (not < 0 || not > 100)
                     {
                         Console.WriteLine("0 dan kücük ve 100 den büyük olamaz");
                         goto NOT;
                     }
 
                     YUZDE:
-                    Console.WriteLine("Notunuzun yüzdesini giriniz");
+                    Console.WriteLine("Notunuzun yüzdesini giriniz :");
                     if (!double.TryParse(Console.ReadLine(), out yuzde))
                     {
-                        Console.WriteLine("lütfen sayı değerinde {0} yuzde değerini giriniz!", i);
+                        Console.WriteLine("lütfen sayı değerinde {0}. notunuzun yuzde değerini giriniz!", i);
                         goto YUZDE;
                     }
-                    if (not < 0 || not > 100)
+                    
+
+                    if (yuzde < 0 || yuzde > 100)
                     {
-                        Console.WriteLine("0 dan kücük ve 100 den büyük olamaz");
+                        kalanYuzde = (not * yuzde) / 100 - not;
+                        Console.WriteLine("0 dan kücük ve 100 den büyük olamaz kalan yüzde hakkınız: " + kalanYuzde );
                         goto YUZDE;
                     }
+                    if (sayac == Convert.ToInt32(notAdeti) - 1)
+                    {
+                        Console.WriteLine("Toplam yüzde 100'e tamamlayamaz.");
+                    }
+                   
+                    i++;
+                } while (i < Convert.ToInt32(notAdeti));
+                
+                ortalama = (not * Convert.ToInt32(notAdeti) ) + (yuzde * Convert.ToInt32(notAdeti) ) / 100;
+
+                if (ortalama >= 90 && ortalama <= 100)
+                {
+                   Console.WriteLine("{0} dersi not ortalamanız {1} Harf notunuz AA Durumunuz GEÇTİ", dersAdi,ortalama);
+                }
+                else if (ortalama >= 80 && ortalama < 90)
+                {
+                    Console.WriteLine("{0} dersi not ortalamanız {1} Harf notunuz BA Durumunuz GEÇTİ", dersAdi, ortalama);
+                }
+                else if (ortalama >= 70 && ortalama < 80)
+                {
+                    Console.WriteLine("{0} dersi not ortalamanız {1} Harf notunuz bb Durumunuz GEÇTİ", dersAdi, ortalama);
+                }
+                else if (ortalama >= 60 && ortalama < 70)
+                {
+                    Console.WriteLine("{0} dersi not ortalamanız {1} Harf notunuz CB Durumunuz GEÇTİ", dersAdi, ortalama);
+                }
+                else if (ortalama >= 50 && ortalama < 60)
+                {
+                    Console.WriteLine("{0} dersi not ortalamanız {1} Harf notunuz CC Durumunuz GEÇTİ", dersAdi, ortalama);
+                }
+                else if (ortalama >= 40 && ortalama < 50)
+                {
+                    Console.WriteLine("{0} dersi not ortalamanız {1} Harf notunuz DC Durumunuz KALDI", dersAdi, ortalama);
+                }
+                else if (ortalama >= 30 && ortalama < 40)
+                {
+
+                    Console.WriteLine("{0} dersi not ortalamanız {1} Harf notunuz DD Durumunuz KALDI", dersAdi, ortalama);
+                }
+                else if (ortalama >=0 && ortalama <30)
+                {
+                    Console.WriteLine("{0} dersi not ortalamanız {1} Harf notunuz DD Durumunuz KALDI", dersAdi, ortalama);
+                }
+                else
+                {
+                    Console.WriteLine("Toplam yüzde 100'e tamamlayamaz!");
+                    goto MENU;
                 }
 
-                
 
             }
             else
